@@ -1,0 +1,57 @@
+MPG prediction based on a car weight
+========================================================
+author: Moh Hassan
+date: 05/21/2015
+
+mtcars data set
+========================================================
+
+This R presentation is for a shiny app that predicts MPG usage for a car using mtcars dataset. The user enters the weight of the car. Then the user selects whether the weight is in pounds or tonnes. A linear regression line is drawn to predicts the MPG of the car.
+
+Slide With Code
+========================================================
+
+```{r}
+summary(mtcars)
+```
+
+Exploring relationship between a car weight and its mpg
+========================================================
+
+```{r, echo=TRUE}
+plot(mtcars$wt, mtcars$mpg)
+abline(lm(mpg~wt, data=mtcars), col="red")
+```
+
+Exploring relation between number of cylinder and mpg
+========================================================
+
+```{r, echo=FALSE}
+plot(mtcars$cyl, mtcars$mpg)
+```
+
+
+Looking at correlation between mpg and car weight
+========================================================
+
+```{r, echo=TRUE}
+cor(mtcars$wt, mtcars$mpg)
+```
+- We can see that the relationship between mpg and wt is strong and negative. As the car weight increases by one unit of wt, the mpg decreases by 0.867
+
+Correlation between mpg and number of cylinder
+```{r, echo=TRUE}
+cor(mtcars$cyl, mtcars$mpg)
+```
+
+- We can see that the relationship between mpg and cyl is strong and negative. As the number of cylinder increases by 2 unit, the mpg decreases by 0.852
+
+
+Using a linear regression to fit in the dataset
+========================================================
+
+```{r, echo=TRUE}
+model <- glm(mpg~wt, data=mtcars)
+
+summary(model)
+```
